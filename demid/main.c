@@ -16,13 +16,13 @@
 //    printf("%d\n", array[n - 1]);
 //}
 
-int next_bin(char *array, int n) {
+int next_operations_set(char *array, int n) {
     int i = n - 1;
     while (i >= 0) {
-        if (array[i] == '0') {
-            array[i] = '1';
+        if (array[i] == '+') {
+            array[i] = '*';
             for (int j = i + 1; j < n; j++) {
-                array[j] = '0';
+                array[j] = '+';
             }
             return 1;
         }
@@ -32,23 +32,22 @@ int next_bin(char *array, int n) {
 }
 
 int main(int argc, const char * argv[]) {
-    char *arr;
+    char *operations;
     int n;
 
 //    printf("Введите размер массива: ");
 //    scanf("%d", &n);
     n = 3;
     
-    arr = (char*) malloc(n * sizeof(char));
+    operations = (char*) malloc(n * sizeof(char));
     for (int i = 0; i < n; i++) {
-        arr[i] = '0';
+        operations[i] = '+';
     }
     
     do {
-//        print_array(arr, n);
-        printf("%s\n", arr);
-    } while (next_bin(arr, n));
+        printf("%s\n", operations);
+    } while (next_operations_set(operations, n));
     
-    free(arr);
+    free(operations);
     return 0;
 }
