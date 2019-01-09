@@ -9,12 +9,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//void print_array(int *array, int n) {
-//    for (int i = 0; i < n - 1; i++) {
-//        printf("%d", array[i]);
-//    }
-//    printf("%d\n", array[n - 1]);
-//}
+void print_array(int *array, int n) {
+    printf("|");
+    for (int i = 0; i < n; i++) {
+        printf("%d|", array[i]);
+    }
+    printf("\n");
+}
 
 int next_operations_set(char *array, int n) {
     int i = n - 1;
@@ -33,6 +34,7 @@ int next_operations_set(char *array, int n) {
 
 int main(int argc, const char * argv[]) {
     char *operations;
+    int *way;
     int start_num, end_num, n;
 
 //    printf("Введите размер массива: ");
@@ -45,20 +47,21 @@ int main(int argc, const char * argv[]) {
     for (int i = 0; i < n; i++) {
         operations[i] = '+';
     }
+    way = (int*) malloc((n + 1) * sizeof(int));
     
     do {
         int res = start_num;
-        printf("|%d|", res);
+        way[0] = res;
         for (int i = 0; i < n; i++) {
-            printf("%c ", operations[i]);
             if (operations[i] == '+') {
                 res += start_num;
+                way[i + 1] = res;
             } else {
                 res *= start_num;
+                way[i + 1] = res;
             }
-            printf("%d|", res);
         }
-        printf("\r");
+        print_array(way, n + 1);
     } while (next_operations_set(operations, n));
     
     free(operations);
