@@ -40,8 +40,8 @@ int main(int argc, const char * argv[]) {
 //    printf("Введите размер массива: ");
 //    scanf("%d", &n);
     start_num = 2;
-    end_num = 10;
-    n = 3;
+    end_num = 40;
+    n = 6;
     
     operations = (char*) malloc(n * sizeof(char));
     for (int i = 0; i < n; i++) {
@@ -63,6 +63,7 @@ int main(int argc, const char * argv[]) {
         }
         
         if (way[n] == end_num) {
+            printf("%s ", operations);
             print_array(way, n + 1);
         }
     } while (next_operations_set(operations, n));
