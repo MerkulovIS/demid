@@ -33,10 +33,12 @@ int next_operations_set(char *array, int n) {
 
 int main(int argc, const char * argv[]) {
     char *operations;
-    int n;
+    int start_num, end_num, n;
 
 //    printf("Введите размер массива: ");
 //    scanf("%d", &n);
+    start_num = 2;
+    end_num = 10;
     n = 3;
     
     operations = (char*) malloc(n * sizeof(char));
@@ -45,7 +47,18 @@ int main(int argc, const char * argv[]) {
     }
     
     do {
-        printf("%s\n", operations);
+        int res = start_num;
+        printf("|%d|", res);
+        for (int i = 0; i < n; i++) {
+            printf("%c ", operations[i]);
+            if (operations[i] == '+') {
+                res += start_num;
+            } else {
+                res *= start_num;
+            }
+            printf("%d|", res);
+        }
+        printf("\r");
     } while (next_operations_set(operations, n));
     
     free(operations);
