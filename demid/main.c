@@ -61,7 +61,10 @@ int main(int argc, const char * argv[]) {
                 way[i + 1] = res;
             }
         }
-        print_array(way, n + 1);
+        
+        if (way[n] == end_num) {
+            print_array(way, n + 1);
+        }
     } while (next_operations_set(operations, n));
     
     free(operations);
